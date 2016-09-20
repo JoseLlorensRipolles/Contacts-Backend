@@ -1,0 +1,14 @@
+{
+  "name": "adress-book-back-end",
+  "version": "1.0.0",
+  "description": "An adress book back end for store/load contacts",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "José Manuel Llorens Ripollés",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2"
+  }
+}

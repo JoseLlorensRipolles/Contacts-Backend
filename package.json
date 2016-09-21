@@ -9,6 +9,7 @@
   "author": "José Manuel Llorens Ripollés",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2"
+    "body-parser": "^1.15.2",
+    "multer": "^1.2.0"
   }
 }

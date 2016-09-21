@@ -4,8 +4,11 @@ var assert = require('assert');
 
 var express = require('express');
 var app = express();
+var multer = require('multer');
+var upload = multer({dest:'userPhotos/'})
 
-varJSON = require('JSON');
+
+var JSON = require('JSON');
 
 
 var bodyParser = require('body-parser');
@@ -27,27 +30,30 @@ app.get('/api/contacts',function(req,res){
 			})
 		}
 	})
+	db.close();
 });
 
 
 app.post('/api/addContact', function(req, res) {
-    console.log(req.body.name + " -> " + req.body.phone);
-    MongoClient.connect(url,function(err,db){
-    	if(!err){
-    		db.collection('contacts').insertOne({
-    			name: req.body.name,
-    			phone: req.body.phone
-    		});
-    	}
-    })
-    res.send(req.body.name + "Saved correctly");
-    db.close();
+	console.log(req.body.name + " -> " + req.body.phone);
+	MongoClient.connect(url,function(err,db){
+		if(!err){
+			db.collection('contacts').insertOne({
+				name: req.body.name,
+				phone: req.body.phone
+			});
+		}
+	})
+	res.send(req.body.name + "Saved correctly");
+	db.close();
 });
+
+app.post('/api/uploadPhoto', upload.single('photo'), function(req,res){
+		console.log(req.file);
+		res.send('okey');
+})
 
 app.listen(3000,function(){
 	console.log("Server listening in 3000");
-})
-
-
-
+});
 
